@@ -36,25 +36,25 @@ In the example architecture we use the following networks:
 * Private network ```172.16.0.0/24``` for cluster communication
 * Private network ```10.0.0.0/24``` for application server connectivity
 
-In the end, clients should access the Elastic IP which represents the service (e.g. a webshop). Traffic is then directed to the currently active BIG-IP, the load balancing decision is made and one of the available application servers answeres the request. 
+In the end, clients should access the Elastic IP which represents the service (e.g. a webshop). Traffic is then directed to the currently active BIG-IP, the load balancing decision is made and one of the available application servers answers the request. 
 
 ## Deployment Guide
 
-In the next steps, we will deploy two F5 BIG-IP instances, configure them and build the Device Service Cluster. We will use Exoscale functionality like Elastic IP Adresses, Anti-Affinity Groups and Security Groups. 
+In the next steps, we will deploy two F5 BIG-IP instances, configure them, build the Device Service Cluster and enable the Elastic IP signaling functionality to associate or dissociate BIG-IPs in the EIP settings. We will use Exoscale functionality like Elastic IP Adresses, Anti-Affinity Groups and Security Groups. 
 
 ### 1. Prepare Exoscale environment
 
 We need to create / allocate the following ressources (if not already existing): 
 
-* an API token to be used by exo-cli tool (have a look at [Exoscale IAM](https://community.exoscale.com/documentation/iam/quick-start/) functionality)
-* one [Anti-Affinity group](https://community.exoscale.com/documentation/compute/anti-affinity-groups/)
-* one [Elastic IP Address (EIP)](https://community.exoscale.com/documentation/compute/eip/)
+* one API token to be used by exo-cli tool (have a look at [Exoscale IAM](https://community.exoscale.com/documentation/iam/quick-start/) functionality) to be able to associate and dissociate instances in the EIP settings
+* one [Anti-Affinity group](https://community.exoscale.com/documentation/compute/anti-affinity-groups/) to make sure both instances run on different Exoscale hyperscalers
+* one [Elastic IP Address (EIP)](https://community.exoscale.com/documentation/compute/eip/) for the client traffic
 * three [Private Networks](https://community.exoscale.com/documentation/compute/private-networks/) for instance management, cluster communication and backend server connectivity
 * some [Security Groups](https://community.exoscale.com/documentation/compute/security-groups/) to limit access to the instance public IP address (e.g. only allow HTTP and HTTPS from anywhere, but allow SSH from specific source IP addresses)
 
 ### 2. Add two F5 BIG-IP instances
 
-We will start with the Single-NIC deployment where we only have one single NIC applied which servers client and administrative traffic. Following up we will configure the instances to   support multiple NICs. To do so, stick to the following procedure:
+We will start with the Single-NIC deployment where we only have one single NIC applied which serves client and administrative traffic. Following up we will configure the instances to   support multiple NICs. To do so, stick to the following procedure:
 
 1. Add two F5 BIG-IP instances with the following settings:
 	- use at least instance type "Medium"
@@ -65,7 +65,7 @@ We will start with the Single-NIC deployment where we only have one single NIC a
 
 ### 3. Prepare the two instances
 
-For performance or hyperscaler/platform redundancy reasons, Exoscale instances use public IP addresses directly configured on the network interface - unlike at AWS or Azure, no NAT/PAT-like functionality is between client traffic and the instances network interface. Therefore, in the process of getting from a Single-NIC to a Multi-NIC deployment, we must also change the management interface to use not the first interface (public network) but use the second interface (private network). Again, this is an example architecure, you can adapt this to your needs and use the fifth interface if you like. The only important thing is that the public network interface is used for client traffic, rather than management traffic. 
+For performance or hyperscaler/platform redundancy reasons, Exoscale instances use public IP addresses directly configured on the first network interface - unlike at AWS or Azure, no NAT/PAT-like functionality is between client traffic and the instances network interface. Therefore, in the process of getting from a Single-NIC to a Multi-NIC deployment, we must also change the management interface to use not the first interface (public network) but use the second interface (private network). Again, this is an example architecure, you can adapt this to your needs and use the fifth interface if you like. The only important thing is that the public network interface is used for client traffic, rather than management traffic. 
 
 Use the following procedure to transform your instances from a Single-NIC to a Multi-NIC deployment. 
 
@@ -83,8 +83,8 @@ Use the following procedure to transform your instances from a Single-NIC to a M
 
 **Network config:**
 
-7. Add your first private network, which will be used as the management network. Add only this network, no more!
-8. Reboot the instance, the instance is now internally recognising the second interface and changes the config from Single-NIC to Multi-NIC
+7. Add your first private network via the Exoscale Portal, which will be used as the management network. Add only this network, no more!
+8. Reboot the instance, which is now internally recognising the second interface and automatically changes the config from Single-NIC to Multi-NIC
 9. Execute ```tmsh modify sys db provision.managementeth value eth1``` to change the management interface from eth0 (default) to eth1
 10. Reboot the instance to make sure everything is applied correctly
 11. Execute the following commands via the Exoscale console:
@@ -119,11 +119,11 @@ We will now configure the active-standby cluster as well as the Elastic IP signa
 **Configure the following only on BIG-IP 02**, change the variables to your needs:
 
 1. Add the config-sync IP: 
-	```tmsh modify cm device $BIG-IP01_HOSTNAME configsync-ip 172.16.0.1```
+	```tmsh modify cm device $BIG-IP02_HOSTNAME configsync-ip 172.16.0.1```
 2. Add the failover network IP:
-	```modify cm device $BIG-IP01_HOSTNAME unicast-address { { ip 172.16.0.1 } { ip management-ip }}``` 
+	```modify cm device $BIG-IP02_HOSTNAME unicast-address { { ip 172.16.0.1 } { ip management-ip }}``` 
 3. Add the session mirroring IP:
-	```tmsh modify cm device $BIG-IP01_HOSTNAME mirror-ip 172.16.0.1```
+	```tmsh modify cm device $BIG-IP02_HOSTNAME mirror-ip 172.16.0.1```
 
 **Configure the following only on BIG-IP 01**, change the variables to your needs:
 
@@ -181,7 +181,7 @@ We will now configure the active-standby cluster as well as the Elastic IP signa
 	}
 	```
 
-When a failover from one to another BIG-IP occurs, the syslog listener (file ```/config/user_alert.conf```) recognises the failover via the LTM log file (```/var/log/ltm```) and executes the corresponding bash script, which associates or dissociates the BIG-IP from the EIP.
+When a failover from one to another BIG-IP occurs, the syslog listener (file ```/config/user_alert.conf```) recognises the failover via the LTM log file (```/var/log/ltm```) and executes the corresponding bash script, which associates or dissociates the BIG-IP in the EIP settings.
 
 ### 5. Node, Pool, Virtual Server configuration
 
