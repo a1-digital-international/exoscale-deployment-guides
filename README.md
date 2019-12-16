@@ -7,3 +7,7 @@ Please have a look at the ![Exoscale](img/mark_small.png) [Exoscale Marketplace]
 ### F5 Networks
 
 * [Active-Standby Cluster Setup](f5-cluster/README.md)
+
+### VMware SD-WAN by VeloCloud
+
+* [VeloCloud virtual Edge Setup](velocloud-virtual-edge/README.md)
