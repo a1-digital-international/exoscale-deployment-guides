@@ -8,6 +8,10 @@ Please have a look at the ![Exoscale](img/mark_small.png) [Exoscale Marketplace]
 
 * [Active-Standby Cluster Setup](f5-cluster/README.md)
 
+### Cisco CSR 1000V Configuration
+
+* [Active-Standby Cluster Setup](cisco-csr/README.md)
+
 ### VMware SD-WAN by VeloCloud
 
 * [VeloCloud virtual Edge Setup](velocloud-virtual-edge/README.md)
