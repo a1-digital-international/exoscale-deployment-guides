@@ -126,3 +126,6 @@ asr2(config)#standby use-bia
 
 asr1#show standby
 
+## Additional Services
+# Site-to-site VPN Configuration
+A VPN tunnel can be configured as shown in this official [Cisco guide](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_conn_vpnips/configuration/xe-3s/sec-sec-for-vpns-w-ipsec-xe-3s-book/sec-cfg-vpn-ipsec.html).
