@@ -10,7 +10,7 @@
 	- [Add User](#3-add-user)
 	- [Enable HSRP](#4-enable-hsrp)
 	- [Check the Standby Status](#5-check-the-standby-status)
-* [Site-to-Site VPN Configuration](#basicconfig)
+* [Site-to-Site VPN Configuration](#site-to-site-vpn-configuration)
 * [Additional Notice](#additional-notice)
 
 
