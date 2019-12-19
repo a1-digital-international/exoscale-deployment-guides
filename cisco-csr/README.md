@@ -24,7 +24,7 @@
 
 This deployment guide intents to describe how to achieve a HA VPN setup for a branch office to a cloud infrastructure. The intention is to securely access backend servers, which are not publicy available, through an encrypted connection. Below you can see a network chart of such a deployment.
 
-![Cisco CSR - Architecture](img/CSR Architecture Chart.png)
+![Cisco CSR - Architecture](img/CSR_Architecture_Chart.png)
 
 ## Basic Configuration
 ### Enable DHCP
