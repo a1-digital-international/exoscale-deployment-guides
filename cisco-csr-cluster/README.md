@@ -4,13 +4,14 @@
 
 * [Requirements](#requirements)
 * [Introduction](#introduction)
-* [Basic Configuration](#basicconfig)
-	- [Enable DHCP](#enablessh)
-	- [Enable SSH](#enablessh)
-	- [Add User](#adduser)
-	- [Enable HSRP](#enablehsrp)
-	- [Check the Standby Status](#checkstandby)
+* [Basic Configuration](#basic-configuration)
+	- [Enable DHCP](#1-enable-dhcp)
+	- [Enable SSH](#2-enable-ssh)
+	- [Add User](#3-add-user)
+	- [Enable HSRP](#4-enable-hsrp)
+	- [Check the Standby Status](#5-check-the-standby-status)
 * [Site-to-Site VPN Configuration](#basicconfig)
+* [Additional Notice](#additional-notice)
 
 
 ## Requirements
@@ -110,6 +111,19 @@ csr2(config)# standby use-bia
 
 ```bash
 csr1# show standby
+GigabitEthernet2 - Group 1
+  State is Active
+    1 state change, last state change 00:02:11
+  Virtual IP address is 172.16.0.3
+  Active virtual MAC address is 0ae9.d000.8154 (MAC In Use)
+    Local virtual MAC address is 0ae9.d000.8154 (bia)
+  Hello time 3 sec, hold time 10 sec
+    Next hello sent in 1.136 secs
+  Preemption enabled, delay min 5 secs, reload 10 secs
+  Active router is local
+  Standby router is 172.16.0.2, priority 10 (expires in 10.224 sec)
+  Priority 150 (configured 150)
+  Group name is "hsrp-Gi2-1" (default)
 ```
 
 ## Site-to-Site VPN Configuration
