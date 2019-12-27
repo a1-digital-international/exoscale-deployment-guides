@@ -121,7 +121,7 @@ We will now configure the active-standby cluster as well as the Elastic IP signa
 1. Add the config-sync IP: 
 	```tmsh modify cm device $BIG-IP02_HOSTNAME configsync-ip 172.16.0.1```
 2. Add the failover network IP:
-	```modify cm device $BIG-IP02_HOSTNAME unicast-address { { ip 172.16.0.1 } { ip management-ip }}``` 
+	```tmsh modify cm device $BIG-IP02_HOSTNAME unicast-address { { ip 172.16.0.1 } { ip management-ip }}``` 
 3. Add the session mirroring IP:
 	```tmsh modify cm device $BIG-IP02_HOSTNAME mirror-ip 172.16.0.1```
 
@@ -132,7 +132,7 @@ We will now configure the active-standby cluster as well as the Elastic IP signa
 2. Add the config-sync IP:
 	```tmsh modify cm device $BIG-IP01_HOSTNAME configsync-ip 172.16.0.1```
 3. Add the failover network IP: 
-	```modify cm device $BIG-IP01_HOSTNAME unicast-address { { ip 172.16.0.1 } { ip management-ip }}``` 
+	```tmsh modify cm device $BIG-IP01_HOSTNAME unicast-address { { ip 172.16.0.1 } { ip management-ip }}``` 
 4. Add the session mirroring IP: 
 	```tmsh modify cm device $BIG-IP01_HOSTNAME mirror-ip 172.16.0.1```
 5. Add BIG-IP 02 to the device trust: 
@@ -140,7 +140,7 @@ We will now configure the active-standby cluster as well as the Elastic IP signa
 6. Create a new sync group: 
 	```tmsh create cm device-group f5-cluster devices add { $BIG-IP01_HOSTNAME $BIG-IP02_HOSTNAME } type sync-failover network-failover enabled```
 7. Sync the config from BIG-IP 01 to BIG-IP 02 and confirm the sync: 
-	```run cm config-sync force-full-load-push to-group f5-cluster```
+	```tmsh run cm config-sync force-full-load-push to-group f5-cluster```
 
 **Enable the signaling script on each instance separately**, the commands below are exemplary for BIG-IP 01!
 
