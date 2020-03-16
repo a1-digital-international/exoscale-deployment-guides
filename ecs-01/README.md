@@ -4,23 +4,11 @@
 
 * [Requirements](#requirements)
 * [Introduction](#introduction)
-* [Configuration of CSR 01](#basic-configuration)
-	- [Configure management interface](#1-enable-dhcp)
-	- [Enable SSH](#2-enable-ssh)
-	- [Add user](#3-add-user)
-	- [Configure the second interface and the cluster](#4-enable-hsrp)
-	- [Configure IPSEC VPN](#5-check-the-standby-status)
-* [Configuration of CSR 02](#basic-configuration)
-	- [Configure management interface](#1-enable-dhcp)
-	- [Enable SSH](#2-enable-ssh)
-	- [Add user](#3-add-user)
-	- [Configure the second interface and the cluster](#4-enable-hsrp)
-	- [Configure IPSEC VPN](#5-check-the-standby-status)
-* [Check the CSR cluster status](#site-to-site-vpn-configuration)
-* [Configuration of ASA](#site-to-site-vpn-configuration)
-	- [Configure the second interface](#)
-	- [Configure IPSEC VPN](#)
-	- [Check the IPSEC tunnel status](#)
+* [Configuration of CSR 01](#configuration-of-csr-01)
+* [Configuration of CSR 02](#configuration-of-csr-02)
+* [Check the CSR cluster status](#check-the-csr-cluster-status)
+* [Configuration of ASA](#configuration-of-asa)
+* [Check the IPSEC tunnel status](#configuration-of-asa)
 * [Additional Notice](#additional-notice)
 
 
@@ -51,7 +39,7 @@ Below you can see a network chart of such a deployment.
 
 In the example architecture we use the following networks:
 
-* Public network for management purpose. <font color="red">This is a lab setup, make sure you not using the public network interface as management interface!</font>
+* Public network for management purpose. This is a lab setup, make sure you not using the public network interface as management interface!
 * Private network ```192.168.0.0/24``` for clients or servers
 * Private network ```10.0.0.0/24``` for clients or servers, as well as for cluster communication
 * Private network ```172.16.0.0/30``` as Virtual Tunnel Interface (VTI) network for Tunnel 1
@@ -318,10 +306,32 @@ asa(config)#route tunnel1 10.0.0.0 255.255.255.0 172.16.0.2 1 track 1
 asa(config)#route tunnel2 10.0.0.0 255.255.255.0 172.16.0.6 254
 ```
 
-### 3. Check the IPSEC tunnel status
+## Check the IPSEC tunnel status
+
+### CSR 01
 
 ```bash
-asa# show interface ip br 
+csr1# show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       159.100.246.1   YES DHCP   up                    up      
+GigabitEthernet2       10.0.0.253      YES manual up                    up      
+Tunnel1                172.16.0.2      YES manual up                    up
+```
+
+### CSR 02
+
+```bash
+csr2# show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       159.100.246.2   YES DHCP   up                    up      
+GigabitEthernet2       10.0.0.252      YES manual up                    up      
+Tunnel2                172.16.0.6      YES manual up                    up
+```
+
+### ASA
+
+```bash
+asa# show interface ip brief 
 Interface                  IP-Address      OK? Method Status                Protocol
 GigabitEthernet0/0         192.168.0.254   YES manual up                    up  
 Management0/0              89.145.167.1	   YES DHCP   up                    up  
