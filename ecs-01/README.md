@@ -8,7 +8,7 @@
 * [Configuration of CSR 02](#configuration-of-csr-02)
 * [Check the CSR cluster status](#check-the-csr-cluster-status)
 * [Configuration of ASA](#configuration-of-asa)
-* [Check the IPSEC tunnel status](#configuration-of-asa)
+* [Check the IPSEC tunnel status](#check-the-ipsec-tunnel-status)
 * [Additional Notice](#additional-notice)
 
 
@@ -43,7 +43,7 @@ In the example architecture we use the following networks:
 * Private network ```192.168.0.0/24``` for clients or servers
 * Private network ```10.0.0.0/24``` for clients or servers, as well as for cluster communication
 * Private network ```172.16.0.0/30``` as Virtual Tunnel Interface (VTI) network for Tunnel 1
-* * Private network ```172.16.0.4/30``` as Virtual Tunnel Interface (VTI) network for Tunnel 2
+* Private network ```172.16.0.4/30``` as Virtual Tunnel Interface (VTI) network for Tunnel 2
 
 The following instances and software versions have been used when writing this guide (all running on Exoscale):
 
