@@ -20,4 +20,4 @@ Please have a look at the ![Exoscale](img/mark_small.png) [Exoscale Marketplace]
 
 ## Example customer setups
 
-* [#01: VPN between Cisco CSR 1000V cluster and Cisco ASA]()
+* [#01: VPN between Cisco CSR 1000V cluster and Cisco ASA](ecs-01/README.md)

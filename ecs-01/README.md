@@ -51,7 +51,7 @@ Below you can see a network chart of such a deployment.
 
 In the example architecture we use the following networks:
 
-* Public network for management purpose. ```diff - This is a lab setup, make sure you not using the public network interface as management interface!```
+* Public network for management purpose. <font color="red">This is a lab setup, make sure you not using the public network interface as management interface!</font>
 * Private network ```192.168.0.0/24``` for clients or servers
 * Private network ```10.0.0.0/24``` for clients or servers, as well as for cluster communication
 * Private network ```172.16.0.0/30``` as Virtual Tunnel Interface (VTI) network for Tunnel 1
