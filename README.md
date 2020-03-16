@@ -6,15 +6,15 @@ Please have a look at the ![Exoscale](img/mark_small.png) [Exoscale Marketplace]
 
 ## Vendors
 
-### Cisco
+#### Cisco
 
 * [CSR 1000V Cluster Setup](cisco-csr-cluster/README.md)
 
-### F5 Networks
+#### F5 Networks
 
 * [Active-Standby Cluster Setup](f5-cluster/README.md)
 
-### VMware SD-WAN by VeloCloud
+#### VMware SD-WAN by VeloCloud
 
 * [VeloCloud virtual Edge Setup](velocloud-virtual-edge/README.md)
 
