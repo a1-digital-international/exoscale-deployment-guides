@@ -26,6 +26,10 @@
 
 This deployment guide intents to describe how to achieve a CSR HA setup consisting of two CSR 1000V nodes and an ASA setup consisting of one ASA node. Instead of connecting directly through the internet, an IPSEC VPN tunnel is used to secure the connection. 
 
+### Caution!
+
+This is a lab setup to quickly demonstrate a customer use case, please adjust the architecture as well as the settings (especially IPSEC) to your needs! It is strongly recommended to use state-of-the-art encryption and key exchange mechanism like AES-256, IKEv2 and PFS.
+
 ### Use case
 
 There are two main use cases, which use the same technology setup: 
@@ -39,7 +43,7 @@ Below you can see a network chart of such a deployment.
 
 In the example architecture we use the following networks:
 
-* Public network for management purpose. This is a lab setup, make sure you not using the public network interface as management interface!
+* Public network for management purpose.
 * Private network ```192.168.0.0/24``` for clients or servers
 * Private network ```10.0.0.0/24``` for clients or servers, as well as for cluster communication
 * Private network ```172.16.0.0/30``` as Virtual Tunnel Interface (VTI) network for Tunnel 1
