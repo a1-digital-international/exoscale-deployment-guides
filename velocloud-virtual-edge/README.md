@@ -42,7 +42,7 @@ The easiest way to deploy a VeloCloud Edge is using the installation from [Exosc
 
   [7cc4f79c]: https://www.exoscale.com/marketplace "Exoscale Marketplace"
 
-![Get It Now](img/marketplace.png)
+![Get It Now](img/Marketplace.png)
 
 Before click at "Get It Now" button, please configure the dependencies as first.
 Start by configuring private network for your zone. From the portal, click `Compute` -> `Private Networks` -> `Zone` -> `Allocate`
