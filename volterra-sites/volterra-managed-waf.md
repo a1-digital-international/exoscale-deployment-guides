@@ -43,14 +43,18 @@ Navigating to ```App -> Security -> App Firewall -> App Firewall Rules```, we se
 
 ### 2. Apply WAF ruleset and test it
 
-To apply the previously generated WAF ruleset, edit the HTTP Load Balancer object and head to the ```Security Configuration``` section. There you need to enable ```Show Advanced Fields``` on the right and set the WAF ruleset.
+To apply the previously generated WAF ruleset, edit the HTTP Load Balancer object. Since the load balancer type is still ```HTTP``` and we want to demonstrate TLS termination, we need to change that to ```HTTPS```. Depending on your setup, you can use ```HTTPS with Automatic Certificate``` if you delegated your domain to Volterra (like we did). If that's not the case, you need to use ```HTTPS with Custom Certificate``` and upload your own TLS certificate. 
+
+![306](img/306.png)
+
+After that, head to the ```Security Configuration``` section. There you need to enable ```Show Advanced Fields``` on the right and set the WAF ruleset.
 
 ![302](img/302.png)
 
-After saving the config, we can test the WAF ruleset by executing a [Cross-Site-Scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. To do so, browse the following URL:
+After saving the config and waiting for the TLS certificate validation (column ```TLS info```), we can test the WAF ruleset by executing a [Cross-Site-Scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. To do so, browse the following URL:
 
 ```
-http://hackazon-kvm.a1dsec.net/search?id=&searchString=%3Cscript%3Ealert(1)%3B%3C%2Fscript%3E
+https://hackazon-kvm.a1dsec.net/search?id=&searchString=%3Cscript%3Ealert(1)%3B%3C%2Fscript%3E
 ```
 
 As you see, the attack has been blocked. 
@@ -65,7 +69,7 @@ Opening the blocking event menu, you see a lot of details about the event itself
 
 ![305](img/305.png)
 
-**That's it!** We now have secured a globally distributed application with just a few clicks and have full insights about the traffic flow, attack vectors and issues of the application. 
+**That's it!** We now have secured a globally distributed application with just a few clicks, have full insights about the traffic flow, attack vectors and issues of the application and most important: have taken care of data security by terminating TLS not in the cloud, but in the local GDPR-compliant, European datacenter. 
 
 
 ## Additional Notice
