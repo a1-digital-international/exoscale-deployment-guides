@@ -59,7 +59,7 @@ https://hackazon-kvm.a1dsec.net/search?id=&searchString=%3Cscript%3Ealert(1)%3B%
 
 As you see, the attack has been blocked. 
 
-![303](img/303.png)
+![303a](img/303a.png)
 
 Now navigating to ```App -> Virtual Hosts -> HTTP Load Balancers```, click on ```Security Events``` of the ```hackazon-vk8s``` object. You see now all security-related events and information. On the bottom, there is the corresponding blocking event listed.
 
