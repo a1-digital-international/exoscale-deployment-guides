@@ -11,7 +11,7 @@
 	- [Enable service discovery](#4-enable-service-discovery)
 	- [Deploy the Hackazon app](#5-deploy-the-hackazon-app)
 	- [Create a load balancer to publish the app to the Internet](#6-create-a-load-balancer-to-publish-the-app-to-the-internet)
-	- [So, what’s next?](so-what's-next)
+	- [So, what’s next?](so-whats-next)
 * [Additional Notice](#additional-notice)
 
 ## Requirements
@@ -43,7 +43,7 @@ The Volterra administrative portal ```VoltConsole``` can be accessed here:
 
 Our architecture looks like the following:
 
-![Architecture](img/arch001.png)
+![architecture-sks](img/arch001.png)
 
 
 ## Deployment Guide 

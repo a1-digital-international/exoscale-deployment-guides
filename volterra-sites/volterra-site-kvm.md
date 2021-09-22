@@ -11,7 +11,7 @@
 	- [Virtual Kubernetes deployment](#4-virtual-kubernetes-deployment)
 	- [Deploy the Hackazon app](#5-deploy-the-hackazon-app)
 	- [Create a load balancer to publish the app to the Internet](#6-create-a-load-balancer-to-publish-the-app-to-the-internet)
-	- [So, what’s next?](so-what's-next)
+	- [So, what’s next?](sso-whats-next)
 * [Additional Notice](#additional-notice)
 
 ## Requirements
@@ -41,7 +41,7 @@ The Volterra administrative portal ```VoltConsole``` can be accessed here:
 
 Our architecture looks like the following:
 
-![Architecture](img/arch002.png)
+![architecure-kvm](img/arch002.png)
 
 ## Deployment Guide
 
