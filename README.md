@@ -18,6 +18,12 @@ Please have a look at the ![Exoscale](img/mark_small.png) [Exoscale Marketplace]
 
 * [VeloCloud virtual Edge Setup](velocloud-virtual-edge/README.md)
 
-## Example customer setups
+#### Volterra
 
-* [#01: VPN between Cisco CSR 1000V cluster and Cisco ASA](ecs-01/README.md)
+* [Deploy a Volterra site inside an Exoscale SKS cluster](volterra-sites/volterra-site-sks.md)
+* [Volterra application deployment across multiple Exoscale zones](volterra-sites/volterra-site-kvm.md)
+
+## Customer use cases
+
+* #01: [VPN between Cisco CSR 1000V cluster and Cisco ASA](ecs-01/README.md)
+* #02: [Deploy a cloud-managed WAF with local TLS termination using Volterra](volterra-sites/volterra-managed-waf.md)
