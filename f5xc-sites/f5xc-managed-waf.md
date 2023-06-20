@@ -9,9 +9,7 @@
 	- [Apply WAF ruleset and test it](#2-apply-waf-ruleset-and-test-it)
 * [Additional Notice](#additional-notice)
 
----
 **Please note:** as in every cloud service, the WebUI can change over time. The screenshots and navigation instructions in this post may be already outdated when reading. 
----
 
 ## Requirements
 

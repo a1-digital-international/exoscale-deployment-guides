@@ -26,4 +26,4 @@ Please have a look at the ![Exoscale](img/mark_small.png) [Exoscale Marketplace]
 ## Customer use cases
 
 * #01: [VPN between Cisco CSR 1000V cluster and Cisco ASA](ecs-01/README.md)
-* #02: [Deploy a cloud-managed WAF with local TLS termination using Volterra](volterra-sites/volterra-managed-waf.md)
+* #02: [Deploy a cloud-managed WAF with local TLS termination using F5XC](f5xc-sites/f5xc-managed-waf.md)

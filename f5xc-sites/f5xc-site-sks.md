@@ -14,9 +14,7 @@
 	- [So, what’s next?](so-whats-next)
 * [Additional Notice](#additional-notice)
 
----
 **Please note:** as in every cloud service, the WebUI can change over time. The screenshots and navigation instructions in this post may be already outdated when reading. 
----
 
 ## Requirements
 

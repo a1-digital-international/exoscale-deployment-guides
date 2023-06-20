@@ -14,9 +14,7 @@
 	- [So, what’s next?](sso-whats-next)
 * [Additional Notice](#additional-notice)
 
----
 **Please note:** as in every cloud service, the WebUI can change over time. The screenshots and navigation instructions in this post may be already outdated when reading. 
----
 
 ## Requirements
 
@@ -53,7 +51,7 @@ Our architecture looks like the following:
 
 As a first step, we need to deploy three virtual machines in each the Exoscale zone DE-FRA-1 (Frankfurt) and CH-DK-2 (Zurich). Since this is still a lab environment and far away from productive, we don’t care about private networks or anti-affinity groups. Anyway, we will not use a single-node deployment, but the three nodes per site will act as Kubernetes master nodes providing high-availability. In an productive setup, we would deploy additional Kubernetes worker nodes beside these master nodes. 
 
-At the time of this writing, the official F5XC KVM image is not yet released to public, but you will get the corresponding QCOW2 file from the F5XC SE you trust. In our case, we have deployed the QCOW2 file with the version tag ```volterra-centos-7.2009.5-202103011045``` as a custom template in the corresponding zones. 
+At the time of this writing, the official F5XC KVM image is not yet released to public, but you will get the corresponding QCOW2 file from either us or your trusted F5 Networks representative. In our case, we have deployed the QCOW2 file with the version tag ```volterra-centos-7.2009.5-202103011045``` as a custom template in the corresponding zones. 
 
 We will use the following naming convention:
 
