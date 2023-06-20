@@ -1,6 +1,6 @@
-![Volterra - powered by Exoscale](img/volterra-powered-by-exoscale.png)
+![F5 - powered by Exoscale](img/f5-powered-by-exoscale.png)
 
-# Deploy a Volterra site inside an Exoscale SKS cluster
+# Deploy a F5XC site inside an Exoscale SKS cluster
 
 * [Requirements](#requirements)
 * [Introduction](#introduction)
@@ -14,30 +14,34 @@
 	- [So, what’s next?](so-whats-next)
 * [Additional Notice](#additional-notice)
 
+---
+**Please note:** as in every cloud service, the WebUI can change over time. The screenshots and navigation instructions in this post may be already outdated when reading. 
+---
+
 ## Requirements
 
 * You have access to the [Exoscale Portal](https://portal.exoscale.com)
 * You're familiar with the Exoscale Portal and know how to deploy, edit and delete instances, Security Groups, Elastic IPs (EIP), etc. If not, start with [this guide](https://community.exoscale.com/documentation/compute/quick-start/) or contact [A1 Digital](mailto:vendors.security@a1.digital)
-* You're familiar with Volterra. If not, start with the [Volterra documentation](https://www.volterra.io/docs) or contact [A1 Digital](mailto:vendors.security@a1.digital)
-* You have a valid Volterra subscription plan - either free or paid
+* You're familiar with F5XC. If not, start with the [F5XC documentation](https://docs.cloud.f5.com/docs/) or contact [A1 Digital](mailto:vendors.security@a1.digital)
+* You have a valid F5XC subscription plan - either free or paid
 * You're familiar with Linux and Kubernetes command line tools
 
 ## Introduction
 
-In this tutorial, we will deploy a Volterra site inside an [Exoscale SKS](https://www.exoscale.com/sks/) managed Kubernetes cluster to
+In this tutorial, we will deploy a F5XC site inside an [Exoscale SKS](https://www.exoscale.com/sks/) managed Kubernetes cluster to
 
 * demonstrate the integration into existing Kubernetes cluster on Exoscale
-* demonstrate the discovery of services of the Kubernetes cluster to be used inside the Volterra console
-* demonstrate the Volterra gateway functionality to reach internal, non-exposed Kubernetes services
+* demonstrate the discovery of services of the Kubernetes cluster to be used inside the F5XC console
+* demonstrate the F5XC gateway functionality to reach internal, non-exposed Kubernetes services
 
-The corresponding Volterra products to be used are:
+The corresponding F5XC products to be used are:
 
-* [VoltMesh](https://www.volterra.io/docs/about-volt/volt-mesh)
-* [VoltStack](https://www.volterra.io/docs/about-volt/volt-stack)
+* [F5XC Mesh](https://docs.cloud.f5.com/docs/about-f5-distributed-cloud/mesh) (formerly known as `VoltMesh`)
+* [F5XC App Stack](https://docs.cloud.f5.com/docs/about-f5-distributed-cloud/app-stack) (formerly known as `VoltStack`)
 
-We will use VoltMesh functionality to route traffic to specific Kubernetes services or to resources outside of the Kubernetes cluster (e.g. using private networks attached to the Kubernetes nodes). 
+We will use F5XC Mesh functionality to route traffic to specific Kubernetes services or to resources outside of the Kubernetes cluster (e.g. using private networks attached to the Kubernetes nodes). 
 
-The Volterra administrative portal ```VoltConsole``` can be accessed here: 
+The F5XC administrative portal ```Distributed Cloud Console``` can be accessed here: 
 
 ![001](img/001.png)
 
@@ -99,7 +103,7 @@ exo --zone at-vie-1 sks kubeconfig sks-vie kube-admin --group system:masters
 
 ### 2. Prepare Kubernetes cluster configuration
 
-Using ```kubectl```, we first of all have to add [Longhorn](https://rancher.com/products/longhorn/) as a storage provider and set it as the default storage class, since this is mandatory for Volterra:
+Using ```kubectl```, we first of all have to add [Longhorn](https://rancher.com/products/longhorn/) as a storage provider and set it as the default storage class, since this is mandatory for F5XC:
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
@@ -113,7 +117,7 @@ Every site needs to be registered and approved using a site-specific token. Toke
 
 ![002](img/002.png)
 
-As next step, the Volterra [Kubernetes manifest](https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml) must be downloaded, enriched with environment-specific information like Cluster-Name, Latitude/Longitude and Token and then must be applied to the Kubernetes cluster. The information which must be added/changed in the manifest are marked with ```# CHANGE ME```.
+As next step, the F5XC [Kubernetes manifest](https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml) must be downloaded, enriched with environment-specific information like Cluster-Name, Latitude/Longitude and Token and then must be applied to the Kubernetes cluster. The information which must be added/changed in the manifest are marked with ```# CHANGE ME```.
 
 ![003](img/003.png)
 
@@ -123,7 +127,7 @@ Apply the manifest file:
 kubectl apply -f ce_k8s.yml
 ```
 
-Back in the VoltConsole portal, you can now accept or deny the newly created cluster named ```sks-vie```. Navigate to ```System -> Manage -> Site Management -> Registrations```. 
+Back in the F5XC portal, you can now accept or deny the newly created cluster named ```sks-vie```. Navigate to ```System -> Manage -> Site Management -> Registrations```. 
 
 ![004](img/004.png)
 
@@ -141,7 +145,7 @@ It’s useful to label specific sites or parts of that site so that you can late
 
 ### 4. Enable service discovery
 
-The SKS site is now up and running. As a last step, we need to allow Volterra to discover the pods and services inside the Kubernetes cluster so that we can reference on them in VoltConsole. To do so, we need to create a new or use an existing kubeconfig file with which you can access the desired namespaces and entities. 
+The SKS site is now up and running. As a last step, we need to allow F5XC to discover the pods and services inside the Kubernetes cluster so that we can reference on them in the F5XC console. To do so, we need to create a new or use an existing kubeconfig file with which you can access the desired namespaces and entities. 
 
 Navigate to ```System -> Manage -> App Management``` and add a new Discovery. Add all your information and choose ```K8S Discovery Configuration``` to add your kubeconfig file. 
 
@@ -236,7 +240,7 @@ Next, we need a HTTP load balancer. Navigate to ```App -> Manage -> Load Balance
 
 ![013](img/013.png)
 
-Please note, that in our case we’re using a domain which is fully managed by Volterra. If you use a custom domain outside of Volterra, you will have to update your DNS manually after load balancer deployment.
+Please note, that in our case we’re using a domain which is fully managed by F5XC. If you use a custom domain outside of F5XC, you will have to update your DNS manually after load balancer deployment.
 
 We can now access the application in the browser:
 
@@ -246,11 +250,11 @@ We can now access the application in the browser:
 
 You can now think about:
 
-* Multi-Kubernetes-deployment using VoltMesh as a transparent logical layer in front of your applications
+* Multi-Kubernetes-deployment using F5XC Mesh as a transparent logical layer in front of your applications
 * Intelligent traffic distribution using traffic routes and circuit breaker
 * Application security to secure your apps without changing a single piece of software code
 
-Please also see the [second part](volterra-site-kvm.md) of this Volterra deployment series on Exoscale.
+Please also see the [second part](f5xc-site-kvm.md) of this F5XC deployment series on Exoscale.
 
 ## Additional Notice
 

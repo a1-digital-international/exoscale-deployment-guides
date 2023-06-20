@@ -14,14 +14,14 @@ Please have a look at the ![Exoscale](img/mark_small.png) [Exoscale Marketplace]
 
 * [Active-Standby Cluster Setup](f5-cluster/README.md)
 
+#### F5 Distributed Cloud (F5XC), formerly known as Volterra
+
+* [Deploy a F5XC site inside an Exoscale SKS cluster](f5xc-sites/f5xc-site-sks.md)
+* [F5XC application deployment across multiple Exoscale zones](f5xc-sites/f5xc-site-kvm.md)
+
 #### VMware SD-WAN by VeloCloud
 
 * [VeloCloud virtual Edge Setup](velocloud-virtual-edge/README.md)
-
-#### Volterra
-
-* [Deploy a Volterra site inside an Exoscale SKS cluster](volterra-sites/volterra-site-sks.md)
-* [Volterra application deployment across multiple Exoscale zones](volterra-sites/volterra-site-kvm.md)
 
 ## Customer use cases
 
