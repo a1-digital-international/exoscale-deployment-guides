@@ -51,8 +51,6 @@ Our architecture looks like the following:
 
 As a first step, we need to deploy three virtual machines in each the Exoscale zone DE-FRA-1 (Frankfurt) and CH-DK-2 (Zurich). Since this is still a lab environment and far away from productive, we don’t care about private networks or anti-affinity groups. Anyway, we will not use a single-node deployment, but the three nodes per site will act as Kubernetes master nodes providing high-availability. In an productive setup, we would deploy additional Kubernetes worker nodes beside these master nodes. 
 
-At the time of this writing, the official F5XC KVM image is not yet released to public, but you will get the corresponding QCOW2 file from either us or your trusted F5 Networks representative. In our case, we have deployed the QCOW2 file with the version tag ```volterra-centos-7.2009.5-202103011045``` as a custom template in the corresponding zones. 
-
 We will use the following naming convention:
 
 * Site ```kvm-de``` with nodes
@@ -64,7 +62,7 @@ We will use the following naming convention:
 	- ```kvm-ch-node2```
 	- ```kvm-ch-node3```
 
-To deploy the nodes, you can use the following exo-cli command snipped. Please adjust them to your needs. 
+To deploy the nodes, you can use the following exo-cli command snipped. Please adjust them to your needs, especially the current template name. 
 
 Make sure that if you use a custom security group, egress traffic is allowed. You don’t need any particular ingress rule, which means the node itself is not accessible through the Internet. The only ingress rule you need is to allow all TCP, UDP and ICMP traffic from one node to another, which can be seen as node-internal traffic.
 
@@ -79,24 +77,21 @@ exo compute instance create "kvm-de-node1" \
   --instance-type "Extra-Large" \
   --disk-size "100" \
   --security-group "f5xc-sg" \
-  --template "f5xc-node" \
-  --template-visibility "private" \
+  --template "F5 Distributed Cloud Services v9.2023.29 BYOL" \
   --zone "de-fra-1"
 
 exo compute instance create "kvm-de-node2" \
   --instance-type "Extra-Large" \
   --disk-size "100" \
   --security-group "f5xc-sg" \
-  --template "f5xc-node" \
-  --template-visibility "private" \
+  --template "F5 Distributed Cloud Services v9.2023.29 BYOL" \
   --zone "de-fra-1"
 
 exo compute instance create "kvm-de-node3" \
   --instance-type "Extra-Large" \
   --disk-size "100" \
   --security-group "f5xc-sg" \
-  --template "f5xc-node" \
-  --template-visibility "private" \
+  --template "F5 Distributed Cloud Services v9.2023.29 BYOL" \
   --zone "de-fra-1"
 ```
 

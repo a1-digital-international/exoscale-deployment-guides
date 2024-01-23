@@ -101,7 +101,7 @@ exo --zone at-vie-1 sks kubeconfig sks-vie kube-admin --group system:masters
 
 ### 2. Prepare Kubernetes cluster configuration
 
-Using ```kubectl```, we first of all have to add [Longhorn](https://rancher.com/products/longhorn/) as a storage provider and set it as the default storage class, since this is mandatory for F5XC:
+Using ```kubectl```, we first of all have to add a prefered storage provider (in our example it's [Longhorn](https://rancher.com/products/longhorn/)) and set it as the default storage class:
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
