@@ -1,0 +1,49 @@
+title: Exoscale Deployment Guides
+email: vendors.security@a1.digital
+description: >-
+  Here you find useful deployment guides integrating third-party vendors in Exoscale.
+baseurl: ""
+url: "https://docs.exolab.cc"
+github_username:  a1-digital-international
+
+# Build settings
+theme: just-the-docs
+plugins:
+  - jekyll-feed
+  - jemoji
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - LICENSE
+
+color_scheme: edg
+logo: "/assets/images/header.png"
+favicon_ico: "/assets/images/favicon.ico"
+
+enable_copy_code_button: true
+
+callouts_level: quiet
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
