@@ -10,13 +10,13 @@ grand_parent: Vendors and Products
 * [Requirements](#requirements)
 * [Introduction](#introduction)
 * [Deployment Guide](#deployment-guide)
-	- [Deploy a SKS cluster](#1-deploy-a-sks-cluster)
-	- [Prepare Kubernetes cluster configuration](#2-prepare-kubernetes-cluster-configuration)
-	- [Register the Kubernetes cluster](#3-register-the-kubernetes-cluster)
-	- [Enable service discovery](#4-enable-service-discovery)
-	- [Deploy the Hackazon app](#5-deploy-the-hackazon-app)
-	- [Create a load balancer to publish the app to the Internet](#6-create-a-load-balancer-to-publish-the-app-to-the-internet)
-	- [So, what’s next?](so-whats-next)
+    - [Deploy a SKS cluster](#1-deploy-a-sks-cluster)
+    - [Prepare Kubernetes cluster configuration](#2-prepare-kubernetes-cluster-configuration)
+    - [Register the Kubernetes cluster](#3-register-the-kubernetes-cluster)
+    - [Enable service discovery](#4-enable-service-discovery)
+    - [Deploy the Hackazon app](#5-deploy-the-hackazon-app)
+    - [Create a load balancer to publish the app to the Internet](#6-create-a-load-balancer-to-publish-the-app-to-the-internet)
+    - [So, what’s next?](so-whats-next)
 * [Additional Notice](#additional-notice)
 
 **Please note:** as in every cloud service, the WebUI can change over time. The screenshots and navigation instructions in this post may be already outdated when reading. 
@@ -50,7 +50,7 @@ The F5XC administrative portal ```Distributed Cloud Console``` can be accessed h
 
 Our architecture looks like the following:
 
-{% lightbox /docs/vendors/f5/img/f5xc-site-sks/architecture-sks.png --alt="architecture-sks" %}
+{% lightbox /docs/vendors/f5/img/f5xc-site-sks/arch001.png --alt="architecture-sks" %}
 
 
 ## Deployment Guide 
@@ -257,7 +257,7 @@ You can now think about:
 * Intelligent traffic distribution using traffic routes and circuit breaker
 * Application security to secure your apps without changing a single piece of software code
 
-Please also see the [other part](f5xc-site-kvm.md) of this F5XC deployment series on Exoscale.
+Please also see the [other part](f5xc-site-kvm) of this F5XC deployment series on Exoscale.
 
 ## Additional Notice
 
