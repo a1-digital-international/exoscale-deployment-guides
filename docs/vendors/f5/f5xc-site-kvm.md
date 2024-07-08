@@ -31,9 +31,7 @@ grand_parent: Vendors and Products
 
 ## Introduction
 
-In this tutorial, we will deploy multiple F5 Distributed Cloud (F5XC) sites on various Exoscale zones to support a globally available, redundant, and secure application setup. 
-
-In contrast to [this tutorial](f5xc-site-sks.md) where an Exoscale SKS managed Kubernetes cluster is used, we will use this time plain KVM virtual machines (```F5XC nodes```) to demonstrate global availability and load balancing across multiple Exoscale zones utilizing the F5XC virtual Kubernetes functionality.
+In this tutorial, we will deploy multiple F5 Distributed Cloud (F5XC) sites on various Exoscale zones. We will use plain KVM virtual machines (```F5XC nodes```) to demonstrate global availability and load balancing across multiple Exoscale zones utilizing the F5XC virtual Kubernetes functionality.
 
 The corresponding F5XC products to be used are:
 
